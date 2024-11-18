@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
 from .models import Order
 from .forms import OrderForm
 
 def order_list(request):
+    print("View is being called")  # Add this debug print
     orders = Order.objects.all().order_by('-order_date')
+    print(f"Number of orders: {orders.count()}")  # Add this debug print
     return render(request, 'orders/order_list.html', {'orders': orders})
 
 def order_create(request):
